@@ -42,9 +42,34 @@ ORM / JPA(61p)
         JPA는 인터페이스 모음이므로 이 인터페이스를 구현한 실제 클래스가 필요(대표적으로 하이버네이트)
 
 application.properties설정(64p)
+    # DB
     spring.h2.console.enabled=true : H2콘솔에 접속할건지 묻는 항목. H2콘솔은 H2 DB를 웹 UI로 보여줌
     spring.h2.console.path=/h2-console : H2콘솔로 접속하기위한 URL경로
     spring.datasource.url=jdbc:h2:~/local : DB에 접속하기위한 경로
     spring.datasource.driverClassName=org.h2.Driver : DB에 접속할 때 사용하는 드라이버 클래스명
     spring.datasource.username=sa : DB사용자명. 기본값이 sa
     spring.datasource.password= : DB 비밀번호.
+    # JPA
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect : 스프링부트+하이버네이트 사용 시 필요한 설정항목.
+    spring.jpa.hibernate.ddl-auto=update : 엔티티를 기준으로 DB의 테이블을 생성하는 규칙 설정
+
+엔티티(70p)
+    엔티티는 DB테이블과 매핑되는 자바 클래스를 말함(모델 또는 도메인 모델이라고도 함.)
+
+어노테이션
+    @Id : id속성을 기본키로 지정(중복되면 안되기 때문)
+    @GeneratedValue : 데이터를 저장할 때 자동으로 1씩 증가 
+        * startegy=GenerationType.IDENTITY는 고유한 번호를 생성하는 방법을 지정하는 부분.
+    @Column : 열의 세부설정 세팅. columnDefinition은 열 데이터 유형이나 성격을 정의.
+    @ManyToOne : 특정 엔티티와 연결된 속성이라는걸 표시. 부모자식관계. 자식에 붙임.
+    @OneToMany : 위 어노테이션과 반대. 1:N관계 정의.
+        * CascadeType.REMOVE : 특정 질문을 삭제하면 그 아래 딸린 답변도 삭제되는 등의 기능
+    @Autowired : 클래스 객체가 선언만 되어있고 값이 비어있을 때 객체를 자동으로 만들어줌.
+                 다른 객체 주입방식으로는 Setter메소드 사용이나 생성자 사용법이 있는데 요즘에는 후자 권장.
+
+리포지토리(79p)
+    DB와 연동하는 JPA리포지터리가 필요함. 리포지터리란 생성된 DB테이블의 데이터를 저장/조회/수정/삭제 돕는 인터페이스.
+    JpaRepository는 JPA가 제공하는 인터페이스 중 하나로 CRUD작업을 처리하는 메소드를 내장하고 있음.
+
+Junit
+    테스트코드를 작성하고, 작성한 코드를 실행할 때 사용하는 자바 테스트 프레임워크.
