@@ -23,7 +23,7 @@ Spring Boot Devtools
     src/main/java : 자바 파일을 저장하는 공간
         - com.mysite.sbb : 자바파일을 저장하는 공간. 컨트롤러, 폼과 DTO, 엔티티, 서비스 등...
         - SbbApplication.java : 프로그램의 시작을 담당하는 파일. 프로젝트명 + Application.java
-    src/main/resources : 자바파일을 제외한 HTML, CSS, JS, 환경파일 등을 저장하는 공간
+    src/main/resources : 자바파일을 제외한 HTML, CSS, JS, 환경파일 등을 저장하는 공간. 스타일은 html파일과 달리 스태틱 디렉토리에 저장해야됨.
         - templates디렉토리 : 템플릿파일 저장. html파일 저장.
         - static 디렉토리 : css, js, 이미지파일 등 저장.
         - application.properties : 프로젝트의 환경설정. 환경변수, db설정 등...
@@ -64,8 +64,15 @@ application.properties설정(64p)
     @ManyToOne : 특정 엔티티와 연결된 속성이라는걸 표시. 부모자식관계. 자식에 붙임.
     @OneToMany : 위 어노테이션과 반대. 1:N관계 정의.
         * CascadeType.REMOVE : 특정 질문을 삭제하면 그 아래 딸린 답변도 삭제되는 등의 기능
+    @ManyToMany : 다대다 맵핑. 예를 들어 하나의 질문에 여러 사람이 추천할 수 있고 한 사람이 여러 개의 질문 추천 가능.
     @Autowired : 클래스 객체가 선언만 되어있고 값이 비어있을 때 객체를 자동으로 만들어줌.
                  다른 객체 주입방식으로는 Setter메소드 사용이나 생성자 사용법이 있는데 요즘에는 후자 권장.
+    @Transactinal : 메소드가 종료될때까지 DB세션이 유지됨.
+    @RequiredArgsConstructor : final이 붙은 속성을 포함하는 생성자를 자동으로 만들어줌
+    @PathVariable : url에서 id처럼 동적으로 변하는 값을 얻고싶을 때 사용
+    @Configuration : 이 파일이 스프링의 환경설정 파일임을 의미하는 어노테이션
+    @EnableWebSecurity : 모든 요청url이 스프링 시큐리티의 제어를 받도록 만드는 어노테이션
+    * bean : 빈이란 스프링에 의해 생성 또는 관리되는 객체를 의미함. 컨트롤러, 서비스, 리포지토리 등...
 
 리포지토리(79p)
     DB와 연동하는 JPA리포지터리가 필요함. 리포지터리란 생성된 DB테이블의 데이터를 저장/조회/수정/삭제 돕는 인터페이스.
@@ -83,3 +90,41 @@ sql연산자
     like : findBySubjectLike
     in : findBySubjectIn
     orderBy : findBySubjectOrderByCreateDateAsc
+
+템플릿(106p)
+    템플릿은 자바 코드를 삽입할 수 있는 html형식의 파일을 말함. 스프링부트에서 지원하는 템플릿 엔진은 다음과 같음.
+    Thymeleaf, Mustache, Groovy, Freemarker, Velocity 등...
+
+타임리프 문법
+    <tr th:each="question : ${questionList}"> 와 같이 사용하고 th:가 타임리프에서 사용하는 속성. 자바코드와 연결됨
+    th:if - if문이나 else if처럼 사용 가능
+    th:each - 반복문. loop객체를 이용해서 사용 가능. ex) th:each="question, loop : ${questionList}"
+        - loop객체를 이용해서 루프 객체 내에서도 다양한 활용이 가능. ex) loop.count, loop.size ...
+    th:text - 해당 요소의 텍스트값 출력. 혹은 [[]] 대괄호를 사용해서도 출력 가능함
+    th:href="@{|/question/detail/${question.id}|}" - || 타임리프에서는 자바객체값을 더할때는 반드시 이런식으로 ||로 잡아줘야됨
+
+서비스(116p)
+    대부분 규모있는 프로젝트에서는 컨트롤러에서 리포지토리를 직접 호출하지 않고 중간에 서비스를 두어 데이터를 처리함.
+    서비스란 스프링에서 데이터를 처리하기위해 작성하는 클래스.
+    - 복잡한 코드를 모듈화할 수 있음 : 동일한 기능을 여러번 사용할 경우 계속 일일히 호출하는게 아니라 모듈화해서 처리할 수 있음
+    - 엔티티 객체를 DTO객체로 변환 가능 : Question, Answer등이 엔티티 클래스. 예민하기때문에 컨트롤러나 템플릿엔진에 직접 전달하는건 좋지 않음.
+                    이 때 서비스에서 엔티티 객체를 DTO객체로 변환해주면 좋음. 컨트롤러-리포지토리 중간에서 엔티티객체-DTO객체를 서로 변환해서 양방향 전달.
+
+URL 프리피그(128p)
+    url의 프리픽스란 url의 접두사 또는 시작부분. 예를 들어 /question/list면 /question이 프리픽스
+
+표준 HTML구조
+    어떤 브라우저를 사용하더라도 웹 페이지가 동일하게 보이고 정상적으로 작동하게 하려면 반드시 웹 표준을 지키는 HTML문서로 작성해야됨.
+    <!doctype html> 등과 같이 반드시 특정 템플릿으로 작성되어야한다는 뜻. 중복되는 템플릿 소스를 줄이기 위해 layout을 사용하면 좋음.
+
+기타 정보
+    Optional : NullPointerException을 방지. null이 올 수 있는 값을 감싸는 Wrapper 클래스.
+
+스프링시큐리티(201p)
+    자체적으로 CSRF공격을 방지하기위해 토큰을 세션을 통해 발행하고, 웹 페이지에서 폼 전송 시 해당 토큰을 함께 전송해서 실제 웹페이지에서 작성한 데이터인지 확인.
+    그래서 html소스를 확인해보면 스프링 시큐리티에서 자동으로 form 태그 안에 input요소를 넣어 csrf토큰을 생성해줌.
+    h2콘솔에 접근하기위해서는 설정파일에서 h2콘솔은 무시하도록 해야됨.
+    스프링 시큐리티는 웹 사이트의 콘텐츠가 다른 사이트에 포함되지 않도록 하기 위해 X-Frame-Options헤더의 기본값을 DENY로 사용(프레임구조 웹사이트는 오류발생)
+
+BCryptPasswordEncoder(210p)
+    스프링시큐리티에서 지원하는 비밀번호 암호화 클래스. 비크립트 해시 함수를 사용. 주로 비밀번호같은 보안정보를 안전하게 저장/검증.
