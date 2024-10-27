@@ -2,29 +2,58 @@
 public class Helloworld {
     public static void main(String[] args) {
         System.out.println("Hello");
-    }
-}
+    }}
 
     Public:
-    메소드의 접근제어자, public은 누구나 이 메소드에 접근할 수 있다는 의미
+
+    메소드의 접근제어자, public은
+    누구나 이
+    메소드에 접근할
+    수 있다는 의미
 
     class:
-    클래스 블록을 만드는 키워드
+    클래스 블록을
+    만드는 키워드
 
-    static:메소드에 static 이 지정되어 있는 경우 이 메소드는 인스턴스 생성없이 실행 할 수 있음을 의미
-        static 키워드를 사용한 변수는 클래스가 메모리에 올라갈 때 자동으로 생성이 된다.
-        인스턴스 생성 없이 바로 사용 가능하기 때문에 프로그램 내에서 공통으로 사용되는 데이터들을 관리할 때 이용한다.
-        값을 변경해 줄 경우 클래스 이름을 앞에 씀.
+    static:메소드에
+    static 이 지정되어
+    있는 경우
+    이 메소드는
+    인스턴스 생성없이
+    실행 할
+    수 있음을 의미
+    static 키워드를 사용한
+    변수는 클래스가
+    메모리에 올라갈
+    때 자동으로
+    생성이 된다.
+    인스턴스 생성
+    없이 바로
+    사용 가능하기
+    때문에 프로그램
+    내에서 공통으로
+    사용되는 데이터들을
+    관리할 때
+    이용한다.값을 변경해
+    줄 경우
+    클래스 이름을
+    앞에 씀.
 
     void:
-    메소드의 리턴값이 없음(void: 사전적으로 “텅 빈” 이라는 뜻)을 의미 
+    메소드의 리턴값이
+
+    없음(void: 사전적으로 “텅 빈” 이라는 뜻)을 의미 
 
 return : 실행중인 메서드를 종료하고 호출한 곳으로 되돌아간다. 
     반환타입이 void가 아닌 경우, 반드시 return문 필요 
 
-String[] : 문자열을 나타내는 자바의 자료형 ([]가 있으므로 한 개가 아닌 여러개의 값으로 이루어진 배열임을 의미) 
+String[] : 문자열을 나타내는
 
-args : String[] 자료형에 대한 변수명 (arguments의 약어) 
+    자바의 자료형 ([]가 있으므로 한 개가 아닌 여러개의 값으로 이루어진 배열임을 의미) 
+
+args : String[] 자료형에
+
+    대한 변수명 (arguments의 약어) 
 args 대신 다른 이름을 사용해도 상관없다. 
 
 System.out.println : 표준출력으로 데이터를 보내는 자바의 내장 메소드로 println 메소드의 입력 문자열을 화면에 출력한다. (명령문; Statement) 
@@ -160,3 +189,32 @@ float f = (float)i; // 소수점 첫째자리까지 출력됨 (1234.0)
 [float -> String]
 float floatValue = 3.14f;
 String stringValue = Float.toString(floatValue); // 3.14
+
+// List 선언
+List<String> fruits = new ArrayList<>();
+// 데이터 추가
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.add("Orange");
+
+ // Map 선언
+ Map<String, Integer> fruitCounts = new HashMap<>();
+ // 데이터 추가
+ fruitCounts.put("Apple", 3);
+ fruitCounts.put("Banana", 2);
+ fruitCounts.put("Orange", 5);
+
+
+// 리스트맵
+List<Map<String, Object>> fruitList = new ArrayList<>();
+
+Map<String, Object> fruit1 = new HashMap<>();
+fruit1.put("name", "Apple");
+fruit1.put("count", 3);
+
+Map<String, Object> fruit2 = new HashMap<>();
+fruit2.put("name", "Banana");
+fruit2.put("count", 2);
+
+fruitList.add(fruit1);
+fruitList.add(fruit2);
