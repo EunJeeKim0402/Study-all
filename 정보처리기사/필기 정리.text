@@ -1,0 +1,16 @@
+* HIPO차트(Hierachy Input Process Output)
+    하향식 소프트웨어 개발을 위한 문서화 도구.
+    시스템의 분석 및 설계나 문서화할 때 사용되는 기법으로, 시스템 실행 과정인 입력/처리/출력 기능을 나타냄.
+    체계적 문서 관리 가능.
+    변경, 유지보수 가능.
+    가시적도표, 총체적도표, 세부적도표가 있음.
+
+* 사용자 인터페이스 종류
+    CLI(Command line interface) : 명력/출력이 텍스트로 이루어진 인터페이스
+    GUI(Graphical user interface) : 아이콘이나 메뉴를 마우스로 선택해서 작업하는 그래픽 환경 인터페이스
+    NUI(Natural user interface) : 사용자의 말이나 행동으로 기기를 조작
+    VUI(Voice user interface) : 사람의 음성으로 기기를 조작
+    OUI(Organic user interface) : 모든 사물과 사용자간의 상호작용을 위한 인터페이스
+
+* 자료흐름도(DFD, data flow diagram)
+    시스템 구성요소인 프로세스와 프로세스 간 데이터 흐름을 표현하는 주요도구
