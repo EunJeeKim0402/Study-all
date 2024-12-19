@@ -218,3 +218,34 @@ fruit2.put("count", 2);
 
 fruitList.add(fruit1);
 fruitList.add(fruit2);
+
+// 대괄호[] - 배열 선언 및 배열 요소 접근에 사용
+int[] numbers = new int[5];
+String[] names = {"Alice", "Bob", "Charlie"};
+
+// 중괄호{} - 코드블록정의, 리스트 데이터 정의
+int[] numbers = {1, 2, 3, 4, 5}; 
+
+// 오버로딩
+한 클래스 내에 동일한 이름의 메소드를 여러개 정의
+int add(int x, int y, int z) {
+    int result = x + y + z;
+    return result;
+}
+long add(int a, int b, long c) {
+    long result = a + b + c;
+    return result;
+}
+
+// 오버라이딩
+부모 클래스로부터 상속받은 메소드의 내용을 변경
+class Animal {
+    String name;
+    String color;
+
+    public void cry() {
+        System.out.println(name + " is crying.");
+    }
+}
+class Dog extends Animal { ... }
+
