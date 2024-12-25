@@ -1,0 +1,20 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+ 
+public class Main {
+ 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+ 
+		String S = in.nextLine();
+		in.close();
+ 
+		// 공백이 있을수있으니 공백 기준으로 반환
+		StringTokenizer st = new StringTokenizer(S," ");
+		
+		// countTokens() 는 토큰의 개수를 반환
+		System.out.println(st.countTokens());	
+		
+	}
+ 
+}
