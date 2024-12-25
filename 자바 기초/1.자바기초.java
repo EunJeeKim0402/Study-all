@@ -249,3 +249,32 @@ class Animal {
 }
 class Dog extends Animal { ... }
 
+// 헷갈리기 쉬운 기본문법
+== VS equals()
+==는 기본형 타입에 대해서는 값 비교, 참조형 타입에 대해서는 메모리 주소를 비교
+equals()는 참조형 타입에 대해 내용을 비교
+
+// switch
+java7부터 switch문에 string 사용 가능
+
+// super
+자바에서 상속 관계에서 부모 클래스의 메소드나 변수에 접근할 때 사용하는 키워드
+class Animal {
+    String name;
+    Animal(String name) {
+        this.name = name;
+    }
+    void sound() {
+        System.out.println("Some animal sound");
+    }
+}
+class Dog extends Animal {
+    // 자식 클래스 생성자에서 부모 클래스의 생성자 호출
+    Dog(String name) {
+        super(name);
+    }
+    void sound() {
+        super.sound(); 
+        System.out.println("Bark");
+    }
+}
