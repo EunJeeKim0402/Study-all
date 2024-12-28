@@ -1,0 +1,57 @@
+// 734 893 -> 437
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+
+		String S = in.nextLine();
+		in.close();
+
+		String[] words = S.split("\\s+");
+
+		String a = words[0];
+        String b = words[1];
+
+		String reversedA = reverse(a);
+        String reversedB = reverse(b);
+
+		int aa = Integer.parseInt(reversedA); 
+        int bb = Integer.parseInt(reversedB); 
+
+		int largerValue = (aa > bb) ? aa : bb;
+
+        System.out.println(largerValue);
+	}
+
+	public static String reverse(String input) {
+        StringBuilder sb = new StringBuilder(input);
+        return sb.reverse().toString();
+    }
+}
+
+/* 다른 사람의 풀이
+StringBuilder의 .reverse 메소드 사용
+
+public class Main {
+ 
+	public static void main(String[] args) {
+ 
+		Scanner in = new Scanner(System.in);
+        
+		int A = in.nextInt();
+		int B = in.nextInt();
+        
+        in.close();
+        
+		A = Integer.parseInt(new StringBuilder().append(A).reverse().toString());
+		B = Integer.parseInt(new StringBuilder().append(B).reverse().toString());
+		
+		System.out.print(A > B ? A : B);
+	
+	}
+}
+
+*/
