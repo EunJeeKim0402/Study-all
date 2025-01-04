@@ -1,0 +1,14 @@
+// 새싹 출력. 문자열 출력이 포인트
+
+public class Main {
+	public static void main(String[] args) {
+		String s = "         ,r'\"7\n" + 	// \", \n 
+				   "r`-_   ,'  ,/\n" + 		// \n 
+				   " \\. \". L_r'\n" + 		// \\, \", \n
+				   "   `~\\/\n" + 			// \\, \n 
+				   "      |\n" + 			// \n
+				   "      |";
+ 
+		System.out.print(s);
+	}
+}
