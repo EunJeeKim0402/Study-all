@@ -1,0 +1,61 @@
+/*
+vacation 2차원 배열의 {12,11,10},{9,8,7},{6,5,4},{3,2,1}값은 초기화 한 후 다음 결과 값과 값이 각 행이
+한 행씩 밀리고 최종 행은 첫번째 행으로 돌아오는 프로그램 작성(list 사용 금지)
+*/
+
+// 첫번째 풀이
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) {
+        int col = 3;
+        int row = 4;
+
+        int num00 = 12, num01 = 11, num02 = 10;
+        int num10 = 9, num11 = 8, num12 = 7;
+        int num20 = 6, num21 = 5, num22 = 4;
+        int num30 = 3, num31 = 2, num32 = 1;
+
+        for(int i=1; i<=row; i++) {
+            if(i == 1) {
+                System.out.println(num30 + " " + num31 + " " + num32);
+            } else if(i == 2) {
+                System.out.println(num00 + " " + num01 + " " + num02);
+            } else if(i == 3) {
+                System.out.println(num10 + " " + num11 + " " + num12);
+            } else {
+                System.out.println(num20 + " " + num21 + " " + num22);
+            }
+        }
+    }
+}
+
+// 두번째 풀이
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) {
+        int[][] arr = { {12, 11, 10}, {9, 8, 7}, {6, 5, 4}, {3, 2, 1} };
+
+        // [3]행 저장
+        int[] lastRow = arr[arr.length-1]; 
+
+        // 다른 행 한칸씩 밀기
+        for (int i=arr.length-1; i>0; i--) { // int i=0; i<arr.length; i++ 인덱스범위를 벗어남
+            arr[i] = arr[i - 1];
+        }
+        
+        arr[0] = lastRow;
+
+        for (int i=0; i<arr.length; i++) {
+            for (int j=0; j<arr[i].length; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
