@@ -48,3 +48,31 @@ StringBuilder : 변할수있는 문자열을 다루는 클래스. 즉, 기존 �
 Model : view에 데이터를 전달하는데 사용됨. 내부적으로 map형태로 저장
 HttpServletRequest : http요청의 모든 정보를 담고있는 객체. 파라미터, http 헤더값, 세션정보 등을 얻을 수 있음
 @AuthenticationPrincipal : 스프링 시큐리티에서 현재 인증된 사용자 정보를 가져올 때 사용. SecurityContext에서 현재 로그인된 사용자 객체를 직접 주입받을 수 있음.
+
+
+[[ com.fasterxml.jackson ]]
+JSON 데이터를 Java 객체로 변환하거나, 그 반대로 변환할 수 있는 Jackson 라이브러리
+ObjectMapper 클래스가 JSON과 Java 객체 간의 변환을 담당
+
+- ObjectMapper
+ObjectMapper mapper = new ObjectMapper(); // ObjectMapper 인스턴스 생성
+Map<String, Object> responseMap = mapper.readValue(sb.toString(), Map.class);  // JSON 문자열을 Map으로 변환
+String jsonString = mapper.writeValueAsString(obj); // Java 객체를 JSON 문자열로 변환
+
+- JsonNode
+JSON 구조에서 데이터를 쉽게 접근할 수 있도록 도와줌. 예를들어 JSON트리구조에서 특정값 추출할 때 사용
+JsonNode rootNode = mapper.readTree("{\"name\":\"John\", \"age\":30}"); // JSON 문자열을 JsonNode로 파싱
+String name = rootNode.get("name").asText(); 
+
+[[ javax.xml.parsers ]]
+XML 문서를 파싱하고 처리하는 Java 라이브러리. XML 문서의 구조를 트리 형태로 다루는 DOM API를 사용
+import javax.xml.parsers.DocumentBuilderFactory;  // XML 파싱을 위한 팩토리 클래스
+import javax.xml.parsers.DocumentBuilder;  // XML 문서 파싱 클래스
+import org.w3c.dom.Document;  // DOM 트리 구조를 다루는 클래스
+import org.w3c.dom.Element;  // XML 요소를 다루는 클래스
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  // 팩토리 인스턴스 생성
+factory.setNamespaceAware(true);  // 네임스페이스 인식 설정(XML의 태그명)
+DocumentBuilder builder = factory.newDocumentBuilder();
+String xmlString = "<person><name>John</name><age>30</age></person>";
+Document doc = builder.parse(new InputSource(new StringReader(xmlString))); // XML 문자열 파싱하여 Document 객체로 변환
+Element rootElement = doc.getDocumentElement(); // 루트 엘리먼트 추출(여기서는 person)
